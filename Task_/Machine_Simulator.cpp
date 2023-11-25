@@ -59,7 +59,9 @@ void Machine_Simulator::Excute()
 		Rigesters[instructions[Done][1]] = Memory[x];
 	}
 	else if (instructions[Done][0] == '2') {
-
+		int x = instructions[Done + 1][0] - '0';
+		x = x * 10 + instructions[Done + 1][1] - '0';
+		Rigesters[instructions[Done][1] - '0'] = x;
 	}
 	else if (instructions[Done][0] == '3') {
 
