@@ -73,7 +73,7 @@ void Machine_Simulator::Excute()
 		}
 	}
 	else if (instructions[Done][0] == '4') {
-
+		Rigesters[instructions[Done + 1][1] - '0'] = Rigesters[instructions[Done + 1][0] - '0'];
 	}
 	else if (instructions[Done][0] == '5') {
 
