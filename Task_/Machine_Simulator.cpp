@@ -64,7 +64,13 @@ void Machine_Simulator::Excute()
 		Rigesters[instructions[Done][1] - '0'] = x;
 	}
 	else if (instructions[Done][0] == '3') {
-
+		if (instructions[Done + 1] == "00") {
+			cout << Rigesters[instructions[Done][1] - '0'] << endl ;
+		}
+		else {
+			int x = Get_Address(instructions[Done + 1]);
+			Memory[x] = Rigesters[instructions[Done][1] - '0'];
+		}
 	}
 	else if (instructions[Done][0] == '4') {
 
