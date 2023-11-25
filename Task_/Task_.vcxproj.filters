@@ -18,5 +18,13 @@
     <ClCompile Include="Task_.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Machine_Simulator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Machine_Simulator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
