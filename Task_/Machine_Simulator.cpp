@@ -6,9 +6,9 @@ using namespace std;
 
 Machine_Simulator::Machine_Simulator()
 {
+	Memory.resize(256 , 0);
 	for (int i = 0; i < 256; i++)
 		Memory[i] = 0;
-	Memory.resize(256 , 0);
 	instructions.resize(256);
 	Rigesters.resize(16 , 0);
 }
@@ -16,7 +16,8 @@ Machine_Simulator::Machine_Simulator()
 void Machine_Simulator::Take_input()
 {
 	string s; 
-	while (cin >> s) {
+	cout << "00 For Stop input" << endl;
+	while (cin >> s && s != "00") {
 		string first = "" ;
 		first += s[2];
 		first += s[3];
@@ -82,7 +83,7 @@ void Machine_Simulator::Excute()
 		}
 	}
 	else if (instructions[Done][0] == 'C') {
-		exit(0);
+		return;
 	}
 }
 
@@ -107,7 +108,7 @@ void Machine_Simulator::Print_Registers()
 			cout << "Register " << i << " = " << Rigesters[i] << endl ;
 		}
 		else {
-			cout << "Register " << 'A' + i - 10 << " = " << Rigesters[i] << endl;
+			cout << "Register " << char('A' + i - 10) << " = " << Rigesters[i] << endl;
 		}
 	}
 }
