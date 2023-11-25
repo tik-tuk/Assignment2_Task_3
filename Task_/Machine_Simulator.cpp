@@ -28,11 +28,6 @@ void Machine_Simulator::Take_input()
 	}
 }
 
-void Machine_Simulator::Step_By_Step()
-{
-	
-}
-
 int Machine_Simulator::Get_Address(string s)
 {
 	int x = 0, y = 0 ;
@@ -91,10 +86,18 @@ void Machine_Simulator::Excute()
 	}
 }
 
+void Machine_Simulator::Step_By_Step()
+{
+	Excute(); 
+	Done += 2;
+}
+
 
 void Machine_Simulator::Run()
 {
-
+	for (Done; Done < Counter; Done += 2) {
+		Excute();
+	}
 }
 
 void Machine_Simulator::Print_Registers()
