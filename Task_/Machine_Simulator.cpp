@@ -8,7 +8,7 @@ Machine_Simulator::Machine_Simulator()
 {
 	for (int i = 0; i < 256; i++)
 		Memory[i] = 0;
-	instructions.resize(256 , 0);
+	Memory.resize(256 , 0);
 	instructions.resize(256);
 	Rigesters.resize(16 , 0);
 }
@@ -76,7 +76,7 @@ void Machine_Simulator::Excute()
 		Rigesters[instructions[Done + 1][1] - '0'] = Rigesters[instructions[Done + 1][0] - '0'];
 	}
 	else if (instructions[Done][0] == '5') {
-
+		Rigesters[instructions[Done][1] - '0'] = Rigesters[instructions[Done + 1][0] - '0'] + Rigesters[instructions[Done + 1][1] - '0'];
 	}
 	else if (instructions[Done][0] == '6') {
 
