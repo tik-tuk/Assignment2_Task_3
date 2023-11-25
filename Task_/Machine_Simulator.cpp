@@ -79,13 +79,15 @@ void Machine_Simulator::Excute()
 		Rigesters[instructions[Done][1] - '0'] = Rigesters[instructions[Done + 1][0] - '0'] + Rigesters[instructions[Done + 1][1] - '0'];
 	}
 	else if (instructions[Done][0] == '6') {
-
+		Rigesters[instructions[Done][1] - '0'] = Rigesters[instructions[Done + 1][0] - '0'] + Rigesters[instructions[Done + 1][1] - '0'];
 	}
 	else if (instructions[Done][0] == 'B') {
-
+		if (Rigesters[instructions[Done][1] - '0'] == Rigesters[0]) {
+			Done = Get_Address(instructions[Done + 1]);
+		}
 	}
 	else if (instructions[Done][0] == 'C') {
-
+		exit(0);
 	}
 }
 
