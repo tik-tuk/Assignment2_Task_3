@@ -2,6 +2,9 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <ostream>
+#include <fstream>
+#include <istream>
 using namespace std;
 
 Machine_Simulator::Machine_Simulator()
@@ -13,15 +16,28 @@ Machine_Simulator::Machine_Simulator()
 	Rigesters.resize(16 , 0);
 }
 
+string Machine_Simulator::Get_IR()
+{
+	return IR;
+}
+
+int Machine_Simulator::Program_Counter()
+{
+	return Counter;
+}
+
 void Machine_Simulator::Take_input()
 {
-	string s; 
-	cout << "00 For Stop input" << endl;
-	while (cin >> s && s != "00") {
-		string first = "" ;
+	cout << "Enter the name of file of instructions : ";
+	string filename; cin >> filename;
+	fstream infile(filename);
+	while (!infile.eof()) {
+		string s; 
+		getline(infile, s);
+		string first = "";
 		first += s[2];
 		first += s[3];
-		string second = "" ;
+		string second = "";
 		second += s[4];
 		second += s[5];
 		instructions[Counter++] = first;
@@ -46,13 +62,14 @@ int Machine_Simulator::Get_Address(string s)
 	else {
 		y += s[1] - '0';
 	}
-	return x * 16 + y - 1;
+	return x * 16 + y ;
 }
 void Machine_Simulator::Excute()
 {
+	IR = instructions[Done] + instructions[Done + 1];
 	if (instructions[Done][0] == '1') {
 		int x = Get_Address(instructions[Done + 1]);
-		Rigesters[instructions[Done][1]] = Memory[x];
+		Rigesters[instructions[Done][1] - '0'] = Memory[x];
 	}
 	else if (instructions[Done][0] == '2') {
 		int x = instructions[Done + 1][0] - '0';
@@ -87,16 +104,25 @@ void Machine_Simulator::Excute()
 	}
 }
 
-void Machine_Simulator::Step_By_Step()
+int Machine_Simulator::Step_By_Step()
 {
-	Excute(); 
-	Done += 2;
+	if (Done >= Counter || instructions[Done] == "C0" && instructions[Done + 1] == "00")
+		return 0;
+	else {
+		Excute(); 
+		cout << "Memory : " << endl ;
+		this->Print_Memory();
+		this->Print_Registers();
+		Done += 2;
+		return 1;
+	}
 }
-
 
 void Machine_Simulator::Run()
 {
 	for (Done; Done < Counter; Done += 2){
+		if (instructions[Done] == "C0" && instructions[Done + 1] == "00")
+			break;
 		Excute();
 	}
 }
@@ -118,8 +144,9 @@ void Machine_Simulator::Print_Memory()
 	for (int i = 0; i < 256; i++) {
 		if (i % 16 == 0)
 			cout << endl;
-		cout << hex << Memory[i] << " ";
+		cout << Memory[i] << " ";
 	}
+	cout << endl;
 }
 
 void Machine_Simulator::Reset()
