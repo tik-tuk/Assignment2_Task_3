@@ -95,22 +95,36 @@ void Machine_Simulator::Step_By_Step()
 
 void Machine_Simulator::Run()
 {
-	for (Done; Done < Counter; Done += 2) {
+	for (Done; Done < Counter; Done += 2){
 		Excute();
 	}
 }
 
 void Machine_Simulator::Print_Registers()
 {
-
+	for (int i = 0; i < 16; i++) {
+		if (i < 10) {
+			cout << "Register " << i << " = " << Rigesters[i] << endl ;
+		}
+		else {
+			cout << "Register " << 'A' + i - 10 << " = " << Rigesters[i] << endl;
+		}
+	}
 }
 
 void Machine_Simulator::Print_Memory()
 {
-
+	for (int i = 0; i < 256; i++) {
+		if (i % 16 == 0)
+			cout << endl;
+		cout << hex << Memory[i] << " ";
+	}
 }
 
 void Machine_Simulator::Reset()
 {
-
+	for (int i = 0; i < 256; i++)
+		Memory[i] = 0;
+	for (int i = 0; i < 16; i++)
+		Rigesters[i] = 0;
 }
