@@ -1,8 +1,5 @@
-
 #include <iostream>
-
 #include "Machine_Simulator.h"
-
 #include <fstream>
 #include <istream>
 #include <ostream>

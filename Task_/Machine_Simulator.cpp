@@ -26,24 +26,6 @@ int Machine_Simulator::Program_Counter()
 	return Counter;
 }
 
-void Machine_Simulator::Take_input()
-{
-	cout << "Enter the name of file of instructions : ";
-	string filename; cin >> filename;
-	fstream infile(filename);
-	while (!infile.eof()) {
-		string s; 
-		getline(infile, s);
-		string first = "";
-		first += s[2];
-		first += s[3];
-		string second = "";
-		second += s[4];
-		second += s[5];
-		instructions[Counter++] = first;
-		instructions[Counter++] = second;
-	}
-}
 
 int Machine_Simulator::Get_Address(string s)
 {
