@@ -1,8 +1,5 @@
 #pragma once
-#include <iostream>
-#include <vector>
-#include <string>
-#include <map>
+#include <bits/stdc++.h>
 using namespace std;
 
 
@@ -10,16 +7,16 @@ class Machine_Simulator
 {
 private :
 	int Counter = 0 , Done = 0 ;
-	vector <string> instructions;
-	vector <int> Rigesters , Memory;
+	vector <string> Rigesters;
+	vector<string> Memory , instructions ;
 	string IR;
 	int Get_Address(string s);
-	void Excute();
+	int Excute();
 public :
 	Machine_Simulator();
 	string Get_IR();
 	int Program_Counter();
-	void Take_input();
+	void Take_input(string file_name);
 	int Step_By_Step();
 	void Run();
 	void Print_Registers();

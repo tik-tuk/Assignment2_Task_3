@@ -12,17 +12,19 @@ int main()
     int s; 
     while (true) {
         cout << "1 For New Program." << endl ;
-        cout << "2 For Display Data." << endl;
-        cout << "3 For Excute the Program." << endl;
+        cout << "2 For Excute the Program." << endl;
+        cout << "3 For Display Data." << endl;
         cout << "0 For Exit Program." << endl;
         cin >> s;
         if (s == 0)
             break;
         if (s == 1) {
             m.Reset();
-            m.Take_input();
+            cout << "Enter input file name : ";
+            string s; cin >> s;
+            m.Take_input(s);
         }
-        if (s == 2) {
+        if (s == 3) {
             cout << "1 For Display Memory." << endl;
             cout << "2 For Display Registers." << endl;
             cout << "3 For Display IR." << endl;
@@ -41,7 +43,7 @@ int main()
                 cout << "Counter = " << m.Program_Counter() << endl;
             }
         }
-        if (s == 3) {
+        if (s == 2) {
             while (1) {
                 cout << "1 For Run." << endl;
                 cout << "2 For Step by Step." << endl;
@@ -52,8 +54,9 @@ int main()
                 }
                 else {
                     int x = m.Step_By_Step();
-                    if (x == 0)
+                    if (!x) {
                         break;
+                    }
                 }
             }
         }
